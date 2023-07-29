@@ -50,7 +50,7 @@ const handleBeforeUpload = (rawFile: UploadRawFile)=>{
 
                 <template #tip>
                     <div class="el-upload__tip">
-                        请不要上传除图片外的文件
+                        请不要上传包含中文名的图片
                     </div>
                 </template>
             </el-upload>

@@ -21,7 +21,7 @@ def delete_files(folder_path):
             file_path = os.path.join(folder_path, file_name)
             if os.path.isfile(file_path):
                 os.remove(file_path)
-        print('deleted'+ folder_path)
+        print('deleted' + folder_path)
         return True
     except Exception as e:
         print("Error deleting files:", e)
@@ -39,7 +39,6 @@ class Registration(Resource):
 
     def get(self):
         return send_file(self.output_path)
-
 
     def post(self):
         img_src = self.img_src
@@ -69,11 +68,10 @@ class CrackID(Resource):
         file = request.files['file']
         filepath = os.path.join(img_src, file.filename)
         file.save(filepath)
-        delete_files(os.path.join(output_path, 'images'))
         Crack(dir_path='./')
-        thread1 = threading.Thread(target=delete_files,args=(img_src,))
+        thread1 = threading.Thread(target=delete_files, args=(img_src,))
         thread1.start()
-        thread2 = threading.Thread(target=delete_files,args=('./crackpic',))
+        thread2 = threading.Thread(target=delete_files, args=('./crackpic',))
         thread2.start()
         return send_file(os.path.join(output_path, 'json/mask_data.json'))
 
